@@ -1,5 +1,5 @@
 /**
- *? Map Styles
+ *? SidebarToggle Styles
  */
 
 /**

@@ -1,5 +1,5 @@
 /**
- *? Locate Styles
+ *? Sidebar Styles
  */
 
 /**
