@@ -19,8 +19,10 @@ const SidebarToggle: FC<SidebarToggleProps> = () => {
   return (
     <div className="absolute z-10 left-5 mt-4" data-testid="sidebar-toggle">
       <button
+        data-testid="btn-sidebar-toggle"
         className="p-2 rounded-full bg-white dark:bg-gray-800 dark:text-gray-200"
         onClick={() => dispatch(toggleSideBar())}
+        aria-label="Toggle Sidebar"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

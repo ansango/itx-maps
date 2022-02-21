@@ -32,8 +32,10 @@ const ThemeToggle: FC<ThemeToggleProps> = ({ isSidebar }) => {
       data-testid="theme-toggle"
     >
       <button
+        data-testid="btn-theme-toggle"
         className="p-2 rounded-full bg-white dark:bg-gray-800 dark:text-gray-200"
         onClick={() => dispatch(toggleTheme())}
+        aria-label={theme}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

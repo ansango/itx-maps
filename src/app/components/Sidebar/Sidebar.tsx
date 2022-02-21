@@ -34,9 +34,11 @@ const Sidebar: FC<SidebarProps> = () => {
       <div className="flex justify-end pb-5">
         <ThemeToggle isSidebar />
         <button
+          data-testid="btn-sidebar-toggle"
           className="p-2 rounded-full bg-white dark:bg-gray-800 dark:text-gray-200"
           type="button"
           onClick={() => dispatch(toggleSideBar())}
+          aria-label="Toggle Sidebar"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -57,12 +59,14 @@ const Sidebar: FC<SidebarProps> = () => {
       <ul className="space-y-2">
         <li>
           <button
+            data-testid="btn-sidebar-options"
             type="button"
             className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 w-full justify-between"
             onClick={() => {
               dispatch(toggleSideBar());
               dispatch(openOptions());
             }}
+            aria-label="Open Options"
           >
             <span className="flex items-center">
               <svg

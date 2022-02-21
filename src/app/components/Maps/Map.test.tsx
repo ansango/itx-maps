@@ -3,11 +3,11 @@
  * ?Map Test
  */
 
-import { render, screen } from "@testing-library/react";
-
+import configureStore from "redux-mock-store";
+import { mount } from "enzyme";
 import Maps from "./Maps";
 import { Provider } from "react-redux";
-import store from "../../store";
+import ThemeToggle from "../ThemeToggle";
 
 jest.mock("@react-google-maps/api", () => {
   return {
@@ -15,23 +15,55 @@ jest.mock("@react-google-maps/api", () => {
     withScriptjs: (Component: any) => Component,
     Polyline: (props: any) => <div {...props} />,
     Marker: (props: any) => <div {...props} />,
-    GoogleMap: (props: any) => (
-      <div>
-        <div className="mock-google-maps" data-testid="google-map">
-          {props.children}
+    GoogleMap: (props: any) => {
+      return (
+        <div>
+          <div className="mock-google-maps" data-testid="google-map">
+            {props.children}
+          </div>
         </div>
-      </div>
-    ),
+      );
+    },
   };
 });
 
 describe("<Map />", () => {
   it("should render", () => {
-    render(
+    const mockStore = configureStore();
+    const store = mockStore({
+      ui: {
+        theme: "light",
+      },
+      markers: [],
+    });
+
+    const wrapper = mount(
       <Provider store={store}>
+        <ThemeToggle />
         <Maps />
       </Provider>
     );
-    expect(screen.getByTestId("google-map")).toBeInTheDocument();
+
+    expect(wrapper.find('[data-testid="google-map-light"]').exists()).toBe(true);
+    expect(wrapper.find('[data-testid="google-map-dark"]').exists()).toBe(false);
+  });
+  it("should render dark theme", () => {
+    const mockStore = configureStore();
+    const store = mockStore({
+      ui: {
+        theme: "dark",
+      },
+      markers: [],
+    });
+
+    const wrapper = mount(
+      <Provider store={store}>
+        <ThemeToggle />
+        <Maps />
+      </Provider>
+    );
+
+    expect(wrapper.find('[data-testid="google-map-light"]').exists()).toBe(false);
+    expect(wrapper.find('[data-testid="google-map-dark"]').exists()).toBe(true);
   });
 });

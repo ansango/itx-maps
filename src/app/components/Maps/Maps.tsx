@@ -2,12 +2,12 @@
  * ?Map Component
  */
 
-import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
-import { FC, useCallback, useState } from "react";
+import { GoogleMap } from "@react-google-maps/api";
+import { FC, useCallback } from "react";
 import { useSelector } from "react-redux";
-import { markerProps } from "../../types/maps";
 import { uiProps } from "../../types/ui";
 import { useLocator } from "../LocatorProvider/LocatorProvider";
+import Markers from "../Markers";
 import { props } from "./config";
 import * as cn from "./MapStyles";
 
@@ -17,39 +17,18 @@ import * as cn from "./MapStyles";
 
 const Maps: FC = () => {
   const { setMap } = useLocator();
-  const [selected, setSelected] = useState<markerProps | null>(null);
   const onMapLoad = useCallback((map) => setMap(map), []);
-  const positions = useSelector(({ markers }: { markers: markerProps[] }) => markers);
   const { theme } = useSelector(({ ui }: { ui: uiProps }) => ui);
-
+  const options = {
+    disableDefaultUI: true,
+    styles: theme === "light" ? cn.layerLight : cn.layerDark,
+  };
   return (
-    <GoogleMap
-      onLoad={onMapLoad}
-      {...props}
-      options={{ disableDefaultUI: true, styles: theme === "dark" ? cn.layerDark : cn.layerLight }}
-      data-testid="google-map"
-    >
-      {positions.map((marker) => (
-        <Marker
-          key={marker.id}
-          position={{
-            lat: marker.lat,
-            lng: marker.lng,
-          }}
-          onClick={() => setSelected(marker)}
-        />
-      ))}
-      {selected ? (
-        <InfoWindow
-          position={{ lat: selected.lat, lng: selected.lng }}
-          onCloseClick={() => setSelected(null)}
-        >
-          <div>
-            <p>{selected.place}</p>
-          </div>
-        </InfoWindow>
-      ) : null}
-    </GoogleMap>
+    <div data-testid={`google-map-${theme}`}>
+      <GoogleMap onLoad={onMapLoad} {...props} options={options}>
+        <Markers />
+      </GoogleMap>
+    </div>
   );
 };
 

@@ -2,19 +2,30 @@
  * ?SidebarToggle Test
  */
 
-import { render, screen } from "@testing-library/react";
+import { getByTestId, render, screen } from "@testing-library/react";
 
 import SidebarToggle from "./SidebarToggle";
 import { Provider } from "react-redux";
-import store from "../../store";
+
+import configureStore from "redux-mock-store";
 
 describe("<SidebarToggle />", () => {
   it("should render", () => {
-    render(
+    const mockStore = configureStore();
+    const store = mockStore({
+      ui: {
+        theme: "light",
+      },
+      markers: [],
+    });
+    const { container } = render(
       <Provider store={store}>
         <SidebarToggle />
       </Provider>
     );
-    expect(screen.getByTestId("sidebar-toggle")).toBeInTheDocument();
+
+    const btn = getByTestId(container, "btn-sidebar-toggle");
+    btn.click();
+    expect(screen.getByTestId("btn-sidebar-toggle")).toHaveAttribute("aria-label", "Toggle Sidebar");
   });
 });

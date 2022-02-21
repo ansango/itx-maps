@@ -34,6 +34,7 @@ const Optionsbar: FC<OptionsbarProps> = () => {
     >
       <div className="flex justify-end pb-5">
         <button
+          data-testid="close-options"
           className="p-2 rounded-full bg-white dark:bg-gray-800 dark:text-gray-200"
           type="button"
           onClick={() => dispatch(closeOptions())}
@@ -56,12 +57,13 @@ const Optionsbar: FC<OptionsbarProps> = () => {
       </div>
       <ol className="relative border-l border-gray-200 dark:border-gray-700">
         {positions.map(({ place, text, id }, index) => (
-          <li key={index} className="mb-10 ml-4">
+          <li key={index} className="mb-10 ml-4" data-testid={`marker-${id}`}>
             <div className="absolute w-3 h-3 bg-gray-200 rounded-full -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
             <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"></time>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{place}</h3>
             <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">{text}</p>
             <button
+              data-testid={`remove-marker-${id}`}
               type="button"
               className="inline-flex items-center py-1 px-3 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
               onClick={() => dispatch(removeMarker(id))}
@@ -87,6 +89,7 @@ const Optionsbar: FC<OptionsbarProps> = () => {
       </ol>
       {positions.length > 0 && (
         <button
+          data-testid="remove-all-markers"
           type="button"
           className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 w-full"
           onClick={() => dispatch(removeAllMarkers())}
