@@ -21,6 +21,7 @@ import {
 // import * as cn from "./SearchStyles";
 
 export type SearchProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   map: google.maps.Map | any;
 };
 
@@ -37,6 +38,7 @@ const Search: FC<SearchProps> = ({ map }) => {
     clearSuggestions,
   } = usePlaces(config);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const mapRef = useRef<google.maps.Map | any>();
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current = map;
