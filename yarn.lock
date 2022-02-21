@@ -1032,11 +1032,6 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@googlemaps/jest-mocks@^2.6.0":
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/@googlemaps/jest-mocks/-/jest-mocks-2.6.0.tgz#e962cc35549b837ebf178d7f24a0b2fdf2ea9fe0"
-  integrity sha512-l2T0kBWmYiokXsfM+jz7i3PyD9W2alFZpg3kKqgaRxtOEEAVxQsB1iQW4RFOJFiXOdKtcGAIO5wZgzO8qqtYqw==
-
 "@googlemaps/js-api-loader@1.12.8":
   version "1.12.8"
   resolved "https://registry.yarnpkg.com/@googlemaps/js-api-loader/-/js-api-loader-1.12.8.tgz#1dec39c7ada607270679248662c02d6f0705e8e4"
@@ -1593,11 +1588,6 @@
   version "3.46.1"
   resolved "https://registry.yarnpkg.com/@types/google.maps/-/google.maps-3.46.1.tgz#a1a3bf99402022ea0039cc8c3230a1f9a216e46e"
   integrity sha512-GAa5ZWYgXG50yLXybb7A824esGm/L0LKHS7qD0qkP0IA/Qp5r922P9tmYcbCkGEf3Zgf7Ukbp7l08/IGIJuQwQ==
-
-"@types/googlemaps@^3.43.3":
-  version "3.43.3"
-  resolved "https://registry.yarnpkg.com/@types/googlemaps/-/googlemaps-3.43.3.tgz#70cf962154a160fe78bcd69d6ccc296dd9175b1f"
-  integrity sha512-ZWNoz/O8MPEpiajvj7QiqCY8tTLFNqNZ/a+s+zTV58wFVNAvvqV4bdGfnsjTb5Cs4V6wEsLrX8XRhmnyYJ2Tdg==
 
 "@types/graceful-fs@^4.1.2":
   version "4.1.5"
