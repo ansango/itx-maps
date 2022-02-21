@@ -56,7 +56,7 @@ const locatorReducer = (state: any, { type, payload }: { type: any; payload?: an
 const LocatorProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(locatorReducer, initialState);
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: `AIzaSyC2B-1ql7S-8D78CHK3bRWa5k4M5kPiLSQ`,
+    googleMapsApiKey: `${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}`,
     libraries,
   });
 
